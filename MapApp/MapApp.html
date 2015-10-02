@@ -22,13 +22,23 @@ Released   : 20121231
         var mapCanvas = document.getElementById('map');
         var mapOptions = {
           center: new google.maps.LatLng(29.8889, -97.9389),
-          zoom: 15,
+          zoom: 15 	,
           mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-
+        };
         var map = new google.maps.Map(mapCanvas, mapOptions);
-      }
+        function addMarker(event) {
+        		marker = new google.maps.Marker({
+  					map: map,
+  					position: event.latLng,
+  					title: "Latitude: "+event.latLng.lat()+" "+", longitude: "+event.latLng.lng(),
+  				});
+        };
+        google.maps.event.addListener(map, 'click', function( event ){
+    			addMarker(event);
+		  });
+      };
       google.maps.event.addDomListener(window, 'load', initialize);
+      //  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5YRUAbzw3CVQH0xKZ50Miqetgix2EHDo&callback=initMap">
     </script>
 	
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600" rel="stylesheet" type="text/css" />
@@ -36,6 +46,9 @@ Released   : 20121231
 <link href="MapApp.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
+<div id="dialog" title="Create new user">
+	<p>"this is a thing"</p>
+</div>
 <div id="wrapper">
 	<div id="header-wrapper">
 		<div id="header" class="container">
